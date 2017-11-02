@@ -3,10 +3,12 @@
 手势解锁控件
 
 ## 没图不说话
-### MIUI实现
-![miui实现](/art/miui.gif "MIUI")  
+
 ### 本项目实现
 ![本项目实现](/art/my.gif "My")
+
+### MIUI实现(注意!!! 不是我实现的)
+![miui实现](/art/miui.gif "MIUI")  
 
 ## 自定义属性
 ```xml
