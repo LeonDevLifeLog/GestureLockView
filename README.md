@@ -10,6 +10,10 @@
 ### MIUI实现(注意!!! 不是我实现的)
 ![miui实现](/art/miui.gif "MIUI")  
 
+## 说明
+
+1. z型路径,每个点代表一个字母,从a到z(26),所以,需求超过5行5列(25)的暂时不要用这个控件,下一版我再限制一下或适配一下,行列较多(变态)需求的等等吧
+
 ## 自定义属性
 ```xml
 <resources>
@@ -42,7 +46,7 @@
 </resources>
 ```
 
-## 接口回调  
+## 使用方法  
 
 使用时只要给控件setOnCheckPasswordListener,实现以下接口  
 ```java
@@ -74,6 +78,7 @@ public interface OnCheckPasswordListener {
 - [ ] 自定义密码错误或长度不够的时候的主颜色  
 - [ ] 点可否被重复连接(增加密码强度)  
 - [ ] 错误次数限制  
+- [ ] 行列都超过5的情况下优化一下
 
 ## Licenses
 
