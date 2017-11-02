@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="default_dot_color">#AACCCCCC</color>
+    <color name="default_dot_pressed_color">#FFBBBBBB</color>
+    <color name="default_line_color">#55CCCCCC</color>
+</resources>

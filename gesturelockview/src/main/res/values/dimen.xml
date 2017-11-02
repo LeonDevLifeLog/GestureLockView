@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="default_dot_radius">4dp</dimen>
+    <dimen name="default_line_width">8dp</dimen>
+    <dimen name="default_dot_pressed_radius">4dp</dimen>
+</resources>

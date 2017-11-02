@@ -1,0 +1,5 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.github.leondevlifelog.gesturelockview">
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+</manifest>

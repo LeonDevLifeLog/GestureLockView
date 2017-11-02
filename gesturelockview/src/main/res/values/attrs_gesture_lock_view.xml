@@ -1,0 +1,34 @@
+<resources>
+    <declare-styleable name="GestureLockView">
+        <!--点的行数-->
+        <attr name="row" format="integer" />
+        <!--点的列数-->
+        <attr name="col" format="integer" />
+        <!--点的颜色-->
+        <attr name="dot_color" format="color|reference" />
+        <!--点的半径-->
+        <attr name="dot_radius" format="dimension|reference" />
+        <!--点被按着的时候的颜色-->
+        <attr name="dot_color_pressed" format="color|reference" />
+
+        <!--点与点之间线条轨迹的颜色-->
+        <attr name="line_color" format="color|reference" />
+        <!--直线轨迹线宽-->
+        <attr name="line_width" format="dimension|reference" />
+        <!--点被点击的时候显示的区域大小-->
+        <attr name="dot_pressed_radius" format="dimension|reference" />
+        <!--是否启用安全模式(不带轨迹)-->
+        <attr name="security_mode" format="boolean" />
+        <!--震动开关-->
+        <attr name="vibrate" format="boolean" />
+        <!--轨迹/密码最小长度-->
+        <attr name="min_length" format="integer" />
+
+        <!--以下功能计划完善-->
+        <!--错误次数限制??-->
+        <!--点可否被重复连接(增加密码强度)-->
+        <!--<attr name="dot_repet" format="boolean" />-->
+        <!--密码错误或长度不够的时候的主颜色-->
+        <!--<attr name="error_color" format="color|reference" />-->
+    </declare-styleable>
+</resources>
