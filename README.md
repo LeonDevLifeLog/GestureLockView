@@ -1,6 +1,8 @@
 # GestureLockView
 
-手势解锁控件
+[ ![Download](https://api.bintray.com/packages/leondevlifelog/maven/gesturelockview/images/download.svg) ](https://bintray.com/leondevlifelog/maven/gesturelockview/_latestVersion)
+
+九宫格手势解锁控件
 
 ## 没图不说话
 
@@ -14,6 +16,11 @@
 
 1. z型路径,每个点代表一个字母,从a到z(26),所以,需求超过5行5列(25)的暂时不要用这个控件,下一版我再限制一下或适配一下,行列较多(变态)需求的等等吧
 
+### 引入库依赖
+
+```groovy
+compile 'com.github.leondevlifelog:gesturelockview:0.0.1'
+```
 ## 自定义属性
 ```xml
 <resources>

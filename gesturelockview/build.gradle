@@ -5,7 +5,7 @@ ext {
 
     publishedGroupId = 'com.github.leondevlifelog' //组织id
     libraryName = 'gesturelockview' //项目名称
-    artifact = 'library' //项目的通用名称
+    artifact = 'gesturelockview' //项目的通用名称
 
     //描述性文字
     libraryDescription = 'Gesture Lock View'
@@ -14,7 +14,7 @@ ext {
     //项目github上的git仓库地址
     gitUrl = 'https://github.com/leondevlifelog/GestureLockView.git'
     //版本号
-    libraryVersion = android.defaultConfig.versionName
+    libraryVersion = '0.0.1'
     //开发者信息设置(任意)
     developerId = 'leondevlifelog'
     developerName = 'leon'
