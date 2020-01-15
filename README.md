@@ -1,16 +1,14 @@
+
 # GestureLockView
 
 [ ![Download](https://api.bintray.com/packages/leondevlifelog/maven/gesturelockview/images/download.svg) ](https://bintray.com/leondevlifelog/maven/gesturelockview/_latestVersion)
 
 九宫格手势解锁控件
 
-## 没图不说话
-
-### 本项目实现
-![本项目实现](/art/my.gif "My")
-
-### MIUI实现(注意!!! 不是我实现的)
-![miui实现](/art/miui.gif "MIUI")  
+## 实例演示
+|本项目实现|MIUI实现|
+|--|--|
+| ![本项目实现](/art/my.gif "My") | ![miui实现](/art/miui.gif "MIUI")   |
 
 ## 说明
 
@@ -19,7 +17,18 @@
 ### 引入库依赖
 
 ```groovy
-compile 'com.github.leondevlifelog:gesturelockview:0.0.1'
+allprojects {
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
+	}
+}
+
+
+dependencies {
+        implementation 'com.github.LeonDevLifeLog:GestureLockView:v0.0.1'
+}
+
 ```
 ## 自定义属性
 ```xml
