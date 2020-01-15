@@ -1,11 +1,12 @@
 
-# GestureLockView
+# GestureLockView 九宫格手势解锁控件
 
-[ ![Download](https://api.bintray.com/packages/leondevlifelog/maven/gesturelockview/images/download.svg) ](https://bintray.com/leondevlifelog/maven/gesturelockview/_latestVersion)
+[![](https://jitpack.io/v/LeonDevLifeLog/GestureLockView.svg)](https://jitpack.io/#LeonDevLifeLog/GestureLockView)    
 
-九宫格手势解锁控件
+## 功能演示    
 
-## 实例演示
+与miui比较    
+
 |本项目实现|MIUI实现|
 |--|--|
 | ![本项目实现](/art/my.gif "My") | ![miui实现](/art/miui.gif "MIUI")   |
@@ -26,7 +27,7 @@ allprojects {
 
 
 dependencies {
-        implementation 'com.github.LeonDevLifeLog:GestureLockView:v0.0.1'
+        implementation 'com.github.LeonDevLifeLog:GestureLockView:v0.0.1' //请手动替换最新版本
 }
 
 ```
