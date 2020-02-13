@@ -3,19 +3,20 @@
 
 [![](https://jitpack.io/v/LeonDevLifeLog/GestureLockView.svg)](https://jitpack.io/#LeonDevLifeLog/GestureLockView)    
 
-## 功能演示    
+## Preview    预览
 
-与miui比较    
-
-|本项目实现|MIUI实现|
+|this projcet|MIUI OS|
 |--|--|
 | ![本项目实现](/art/my.gif "My") | ![miui实现](/art/miui.gif "MIUI")   |
 
-## 说明
+## Notice 说明
 
-1. z型路径,每个点代表一个字母,从a到z(26),所以,需求超过5行5列(25)的暂时不要用这个控件,下一版我再限制一下或适配一下,行列较多(变态)需求的等等吧
 
-### 引入库依赖
+* 每个点代表一个字母,从a到z(需求超过5行5列(25)的暂时支持)
+
+* Every point is a char from a to z(so more than 5 col and 5 row is not support now)
+
+### How to use 引入库依赖
 
 ```groovy
 allprojects {
@@ -31,39 +32,33 @@ dependencies {
 }
 
 ```
-## 自定义属性
+## Layout sample 自定义属性
 ```xml
-<resources>
-    <declare-styleable name="GestureLockView">
-        <!--点的行数 默认3行-->
-        <attr name="row" format="integer" />
-        <!--点的列数 默认3列-->
-        <attr name="col" format="integer" />
-        <!--点的颜色 默认-->
-        <attr name="dot_color" format="color|reference" />
-        <!--点的半径-->
-        <attr name="dot_radius" format="dimension|reference" />
-        <!--点被按着的时候的颜色-->
-        <attr name="dot_color_pressed" format="color|reference" />
-
-        <!--点与点之间线条轨迹的颜色-->
-        <attr name="line_color" format="color|reference" />
-        <!--直线轨迹线宽-->
-        <attr name="line_width" format="dimension|reference" />
-        <!--点被点击的时候显示的区域大小-->
-        <attr name="dot_pressed_radius" format="dimension|reference" />
-        <!--是否启用安全模式(不带轨迹)-->
-        <attr name="security_mode" format="boolean" />
-        <!--震动开关-->
-        <attr name="vibrate" format="boolean" />
-        <!--轨迹/密码最小长度-->
-        <attr name="min_length" format="integer" />
-
-    </declare-styleable>
-</resources>
+<com.github.leondevlifelog.gesturelockview.GestureLockView
+        android:id="@+id/customGestureLockView"
+        android:layout_width="229dp"
+        android:layout_height="241dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="76dp"
+        android:padding="0dp"
+        app:col="4"   <!--点的列数 默认3列-->
+        app:dot_color="#121212" <!--点的颜色 默认-->
+        app:dot_color_pressed="#FF2254A6"  <!--点被按着的时候的颜色-->
+        app:dot_pressed_radius="6dp"  <!--点被点击的时候显示的区域大小-->
+        app:dot_radius="6dp" <!--点的半径-->
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:line_color="#55CCCCCC"    <!--点与点之间线条轨迹的颜色-->
+        app:line_width="12dp"   <!--直线轨迹线宽-->
+        app:min_length="4"    <!--轨迹/密码最小长度-->
+        app:row="4"  <!--点的行数 默认3行-->
+        app:security_mode="false"    <!--是否启用安全模式(不带轨迹)-->
+        app:vibrate="true"    <!--震动开关--> />
 ```
 
-## 使用方法  
+##  SetListener 使用方法  
 
 使用时只要给控件setOnCheckPasswordListener,实现以下接口  
 ```java
@@ -100,7 +95,7 @@ public interface OnCheckPasswordListener {
 ## Licenses
 
 ```
-Copyright 2017 Leon
+Copyright 2020 Leon
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
