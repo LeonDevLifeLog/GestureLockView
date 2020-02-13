@@ -1,7 +1,11 @@
 
 # GestureLockView 九宫格手势解锁控件
 
-[![](https://jitpack.io/v/LeonDevLifeLog/GestureLockView.svg)](https://jitpack.io/#LeonDevLifeLog/GestureLockView)    
+[![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html)
+[![](https://jitpack.io/v/LeonDevLifeLog/GestureLockView.svg)](https://jitpack.io/#LeonDevLifeLog/GestureLockView)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/68b4a9ad824148ada39b0dfbecfc6ffb)](https://www.codacy.com/manual/LeonDevLifeLog/GestureLockView?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=LeonDevLifeLog/GestureLockView&amp;utm_campaign=Badge_Grade)
+[![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
+[![GitHub license](https://img.shields.io/github/license/LeonDevLifeLog/GestureLockView)](https://github.com/LeonDevLifeLog/GestureLockView/blob/master/LICENSE)
 
 ## Preview    预览
 
