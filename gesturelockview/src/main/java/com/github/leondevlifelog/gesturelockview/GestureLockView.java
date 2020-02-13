@@ -11,11 +11,12 @@ import android.graphics.Region;
 import android.os.Build;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+
+import androidx.core.content.ContextCompat;
 
 import static android.content.Context.VIBRATOR_SERVICE;
 
@@ -25,6 +26,7 @@ import static android.content.Context.VIBRATOR_SERVICE;
  * @author liang
  *         日期 2017-11-01 01:57:58
  */
+@SuppressWarnings("unused")
 public class GestureLockView extends View {
     private static final String TAG = "GestureLockView";
     private final static int DEFAULT_ROW = 3;
@@ -35,9 +37,6 @@ public class GestureLockView extends View {
     private Context mContext;
     private Paint dotPaint;
     private int paddingLeft;
-    private int paddingTop;
-    private int paddingRight;
-    private int paddingBottom;
     private int contentWidth;
     private int contentHeight;
     private int row;
@@ -62,10 +61,8 @@ public class GestureLockView extends View {
     private Path linePath;
 
     private Point lastPoint;
-    private StringBuilder passwd;
-    private int realDotRadius;
-    private int dotPressedRedius;
-    private boolean vibrateable;
+    private StringBuilder password;
+    private int dotPressedRadius;
     private Vibrator vibrator;
     private boolean isTouching = false;
     private int minLength;
@@ -98,8 +95,6 @@ public class GestureLockView extends View {
     /**
      * 初始化一些属性
      *
-     * @param attrs
-     * @param defStyle
      */
     private void init(AttributeSet attrs, int defStyle) {
         final TypedArray a = getContext().obtainStyledAttributes(
@@ -117,9 +112,9 @@ public class GestureLockView extends View {
         lineWidth = a.getDimensionPixelSize(R.styleable.GestureLockView_line_width,
                 getResources().getDimensionPixelSize(R.dimen.default_line_width));
         securityMode = a.getBoolean(R.styleable.GestureLockView_security_mode, false);
-        dotPressedRedius = a.getDimensionPixelSize(R.styleable.GestureLockView_dot_pressed_radius,
+        dotPressedRadius = a.getDimensionPixelSize(R.styleable.GestureLockView_dot_pressed_radius,
                 getResources().getDimensionPixelSize(R.dimen.default_dot_pressed_radius));
-        vibrateable = a.getBoolean(R.styleable.GestureLockView_vibrate, true);
+        boolean vibrateable = a.getBoolean(R.styleable.GestureLockView_vibrate, true);
         minLength = a.getInt(R.styleable.GestureLockView_min_length, 4);
         a.recycle();
         if (vibrateable) {
@@ -150,16 +145,16 @@ public class GestureLockView extends View {
         currentPoint = new Point();
         linePath = new Path();
         lastPoint = new Point(0, 0);
-        passwd = new StringBuilder();
+        password = new StringBuilder();
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         paddingLeft = getPaddingLeft();
-        paddingTop = getPaddingTop();
-        paddingRight = getPaddingRight();
-        paddingBottom = getPaddingBottom();
+        int paddingTop = getPaddingTop();
+        int paddingRight = getPaddingRight();
+        int paddingBottom = getPaddingBottom();
 
         contentWidth = getWidth() - paddingLeft - paddingRight;
         contentHeight = getHeight() - paddingTop - paddingBottom;
@@ -205,7 +200,7 @@ public class GestureLockView extends View {
         //<editor-fold desc="画最后一个点和手指触摸点之间的连线">
         if ((lastPoint.x != 0 || lastPoint.y != 0) //不是初始点
                 && !securityMode//不是安全模式
-                && passwd.length() > 0) {
+                && password.length() > 0) {
             canvas.drawLine(lastPoint.x, lastPoint.y, currentPoint.x, currentPoint.y, linePaint);
         }
         //</editor-fold>
@@ -226,11 +221,12 @@ public class GestureLockView extends View {
                     x += widthHeightOffset / 2f;
                 }
                 //</editor-fold>
+                int realDotRadius;
                 if (dotsStatus[i - 1][j - 1] == 1) {
                     if (!securityMode || STATUS == ERROR) {
                         dotPaint.setColor(realDotPressedColor);
                     }
-                    realDotRadius = dotPressedRedius > getTouchAreaMimiRadius() ? getTouchAreaMimiRadius() - 16 : dotPressedRedius;
+                    realDotRadius = dotPressedRadius > getTouchAreaMimiRadius() ? getTouchAreaMimiRadius() - 16 : dotPressedRadius;
                 } else {
                     dotPaint.setColor(dotColor);
                     realDotRadius = dotRadius;
@@ -253,7 +249,7 @@ public class GestureLockView extends View {
      * 获得最小触摸范围的半径
      * <br>为了防止触摸范围重叠
      *
-     * @return
+     * @return 最小接触范围半径
      */
     private int getTouchAreaMimiRadius() {
         int max = Math.max(col, row);
@@ -261,19 +257,9 @@ public class GestureLockView extends View {
     }
 
     /**
-     * 获取最大padding
-     * <br>为了确定每个点的触摸范围
-     *
-     * @return
-     */
-    private int getMaxPadding() {
-        return Math.max(Math.max(paddingBottom, paddingTop), Math.max(paddingLeft, paddingRight));
-    }
-
-    /**
      * 获取长宽的最小值
      *
-     * @return
+     * @return 获取最小值
      */
     private int getMiniViewSize() {
         return Math.min(contentHeight, contentWidth);
@@ -282,7 +268,7 @@ public class GestureLockView extends View {
     /**
      * 获得view形状,是竖屏形状还是横屏形状
      *
-     * @return
+     * @return 形状
      */
     private int getViewOrientation() {
         if (contentWidth > contentHeight) {
@@ -312,7 +298,7 @@ public class GestureLockView extends View {
     /**
      * 处理Action Down事件
      *
-     * @param event
+     * @param event 事件
      */
     private void dealDown(MotionEvent event) {
         if (action != null) {
@@ -329,8 +315,8 @@ public class GestureLockView extends View {
                         vibrator();
                         String posString = String.valueOf((char) (j * row + i + 1 + 96));
                         Log.d(TAG, "dealDown: posString" + posString);
-                        if (passwd.indexOf(posString) == -1) {
-                            passwd.append(posString);
+                        if (password.indexOf(posString) == -1) {
+                            password.append(posString);
                         }
                     }
                     dotsStatus[i][j] = 1;
@@ -342,7 +328,7 @@ public class GestureLockView extends View {
     /**
      * 处理Action Move事件
      *
-     * @param event
+     * @param event 事件
      */
     private void dealMove(MotionEvent event) {
         currentPoint.set(((int) event.getX()), ((int) event.getY()));
@@ -357,8 +343,8 @@ public class GestureLockView extends View {
                         isTouching = true;
                         String posString = String.valueOf((char) (j * row + i + 1 + 96));
                         Log.d(TAG, "dealDown: posString" + posString);
-                        if (passwd.indexOf(posString) == -1) {
-                            passwd.append(posString);
+                        if (password.indexOf(posString) == -1) {
+                            password.append(posString);
                         }
                     }
                     dotsStatus[i][j] = 1;
@@ -375,7 +361,7 @@ public class GestureLockView extends View {
      */
     private void resetStatus() {
         currentPoint.set(lastPoint.x, lastPoint.y);
-        if (passwd.toString().length() < minLength) {
+        if (password.toString().length() < minLength) {
             //密码长度小于最小长度
             setStatus(ERROR);
             if (onCheckPasswordListener != null) {
@@ -383,7 +369,7 @@ public class GestureLockView extends View {
             }
         } else {
             //密码长度符合要求
-            if (onCheckPasswordListener != null && onCheckPasswordListener.onCheckPassword(passwd.toString())) {
+            if (onCheckPasswordListener != null && onCheckPasswordListener.onCheckPassword(password.toString())) {
                 if (onCheckPasswordListener != null) {
                     onCheckPasswordListener.onSuccess();
                 }
@@ -394,7 +380,7 @@ public class GestureLockView extends View {
                 }
             }
         }
-        passwd.delete(0, passwd.length());
+        password.delete(0, password.length());
         invalidate();
         //抬起手指后过一秒钟再清除输入轨迹
         action = new Runnable() {
@@ -419,7 +405,7 @@ public class GestureLockView extends View {
         }
         linePath.rewind();
         linePath.moveTo(currentPoint.x, currentPoint.y);
-        passwd.delete(0, passwd.length());
+        password.delete(0, password.length());
     }
 
     /**
@@ -428,7 +414,7 @@ public class GestureLockView extends View {
      * <code>SUCCESS</code> 密码正确状态<br>
      * <code>ERROR</code> 密码输入错误状态
      *
-     * @param i
+     * @param i 状态
      */
     private void setStatus(int i) {
         if (ERROR == i) {
@@ -529,12 +515,12 @@ public class GestureLockView extends View {
         invalidate();
     }
 
-    public int getDotPressedRedius() {
-        return dotPressedRedius;
+    public int getDotPressedRadius() {
+        return dotPressedRadius;
     }
 
-    public void setDotPressedRedius(int dotPressedRedius) {
-        this.dotPressedRedius = dotPressedRedius;
+    public void setDotPressedRadius(int dotPressedRadius) {
+        this.dotPressedRadius = dotPressedRadius;
         invalidate();
     }
 

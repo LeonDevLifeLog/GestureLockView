@@ -1,42 +1,17 @@
 apply plugin: 'com.android.library'
-ext {
-    bintrayRepo = 'maven' //maven仓库名称，直接写maven即可
-    bintrayName = 'gesturelockview' //项目名称(包名)
-
-    publishedGroupId = 'com.github.leondevlifelog' //组织id
-    libraryName = 'gesturelockview' //项目名称
-    artifact = 'gesturelockview' //项目的通用名称
-
-    //描述性文字
-    libraryDescription = 'Gesture Lock View'
-    //项目github上的地址
-    siteUrl = 'https://github.com/leondevlifelog/GestureLockView'
-    //项目github上的git仓库地址
-    gitUrl = 'https://github.com/leondevlifelog/GestureLockView.git'
-    //版本号
-    libraryVersion = '0.0.1'
-    //开发者信息设置(任意)
-    developerId = 'leondevlifelog'
-    developerName = 'leon'
-    developerEmail = 'leondevlifelog@gmail.com'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
-}
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 28
 
 
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 26
+        targetSdkVersion 28
         versionCode 1
         versionName "0.0.1"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
 
@@ -52,12 +27,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
 }
-// 使用bintray插件
-// Place it at the end of the file
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'

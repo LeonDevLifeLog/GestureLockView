@@ -2,10 +2,11 @@ package com.github.leondevlifelog.gesturelockviewsample;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.leondevlifelog.gesturelockview.GestureLockView;
 
